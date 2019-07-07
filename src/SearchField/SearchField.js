@@ -1,12 +1,10 @@
 import React from "react";
 
-export default class SearchField extends React.Component {
-    onInput = (e) => {
+export default function SearchField (props) {
+    function onInput (e) {
         e.persist();
         console.log(e);
     }
 
-    render(){
-        return <input type="text" onInput={this.onInput}/>;
-    }
+    return <input type="text" onInput={onInput}/>;
 }

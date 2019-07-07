@@ -1,17 +1,10 @@
 import React from "react";
 
-export default class RenderBox extends React.Component {
-    constructor(props){
-        super(props);
-    }
-
-    componentDidUpdate(prevProps){
-        console.log("prevProps", prevProps);
-    }
+export default function RenderBox (props) {
     
-    render(){
-        return (<ul>
-            <li>Demo</li>
-        </ul>);
-    }
+console.log("props:", props);
+
+return (<ul>
+    <li>Demo</li>
+</ul>);
 }

@@ -9,21 +9,19 @@ import Footer from "./Footer/Footer";
 import logo from './logo.svg';
 import './App.css';
 
-export default class App extends React.Component {
-  render(){
-    return (
-      <Router>
-        <React.Fragment>
-          <Header />
-          <Route exact path="/" component={Catalog} />
-          <Route path="/have-to-buy/" component={HaveToBuy} />
-          <Route path="/sources/" component={SourcesOfEBooks} />
-          <Route path="/publishers/" component={Publishers} />
-          <Footer />
-        </React.Fragment>
-      </Router>
-    );
-  }
+export default function App(){
+  return (
+    <Router>
+      <React.Fragment>
+        <Header />
+        <Route exact path="/" component={Catalog} />
+        <Route path="/have-to-buy/" component={HaveToBuy} />
+        <Route path="/sources/" component={SourcesOfEBooks} />
+        <Route path="/publishers/" component={Publishers} />
+        <Footer />
+      </React.Fragment>
+    </Router>
+  )
 }
 
 function Topic({ match }) {
