@@ -9,5 +9,5 @@ export default function SelectCheckboxes (props){
         props.setState(state);
     }
 
-    return <div onClick={changeState} className={props.condition}></div>;
+    return <div onClick={changeState} className={props.condition}>{props.condition}</div>;
 }
