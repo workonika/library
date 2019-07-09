@@ -11,12 +11,12 @@ export default function RenderBox (props) {
         setState(state);
     }
 
-    return <React.Fragmet>
+    return <React.Fragment>
         <div className={"empty"}>
             <SelectCheckboxes condition={"selected-partially"} setState={changeStateSelectCheckboxes} />
         </div>
         <ul>
-            {books.map(book=><li><input type="checkbox" id={book}></input>{book}</li>)}
+            {books.map((book, idx)=><li key={idx}><input type="checkbox" id={book}></input>{book}</li>)}
         </ul>
-    </React.Fragmet>
+    </React.Fragment>
 }
