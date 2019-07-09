@@ -3,7 +3,7 @@ import SelectCheckboxes from "../SelectCheckboxes/SelectCheckboxes";
 
 export default function RenderBox (props) {
   
-    const [state, setState] = useState(true);
+    const [state, setState] = useState("checked");
 
     const [books, setBooks] = useState(props.books);
 
@@ -14,6 +14,7 @@ export default function RenderBox (props) {
     return <React.Fragment>
         <div className={"empty"}>
             <SelectCheckboxes condition={"selected-partially"} setState={changeStateSelectCheckboxes} />
+            {state}
         </div>
         <ul>
             {books.map((book, idx)=><li key={idx}><input type="checkbox" id={book}></input>{book}</li>)}
