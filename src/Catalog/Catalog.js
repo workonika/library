@@ -1,5 +1,5 @@
 import React from "react";
-import CheckBox from "../CheckBox/CheckBox";
+import RenderBox from "../RenderBox/RenderBox";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 
@@ -8,14 +8,11 @@ export default function Catalog() {
         alert("Button Clicked");
     }
 
+    const books = ["Война и мир", "Пукшин в погоне за счастьем", "Дадя Вася строитель", "Кузя"];
+
     return(
     <React.Fragment> 
         <h2>Каталог</h2>
-        <Modal />
-        <div><Button buttonText={"+ книгу"} onClick={openModalWindow}/></div>
-        <div><CheckBox labelText={"Это каталог"}/></div>
-        <div><CheckBox /></div>
-        <div><CheckBox /></div>
-        <div><CheckBox /></div>
+        <RenderBox books={books} />
     </React.Fragment>);
 }
