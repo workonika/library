@@ -6,7 +6,8 @@ export default function SelectCheckboxes (props){
 
     function changeState(){
         setState(state === 0 ? 1 : 0);
+        props.setState(state);
     }
 
-    return <div onClick={changeState} className={"custom-checkbox medium"}></div>;
+    return <div onClick={changeState} className={props.condition}></div>;
 }
