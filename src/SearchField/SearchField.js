@@ -1,4 +1,5 @@
 import React from "react";
+import "./SearchField.css";
 
 export default function SearchField (props) {
     function onInput (e) {
@@ -6,5 +7,5 @@ export default function SearchField (props) {
         console.log(e);
     }
 
-    return <input type="text" onInput={onInput}/>;
+    return <div className={"search"}><input type="text" onInput={onInput} placeholder="Начните вводить название"/></div>;
 }

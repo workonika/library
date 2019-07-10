@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import SearchField from "../SearchField/SearchField";
 import {titles as T} from "../Catalog/Catalog"; 
+import "./Header.css";
 
 export default function Header() {
 
