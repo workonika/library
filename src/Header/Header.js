@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import SearchField from "../SearchField/SearchField";
+import {titles as T} from "../Catalog/Catalog"; 
 
 export default function Header() {
 
@@ -9,18 +10,9 @@ export default function Header() {
             <SearchField/>
             <nav>
                 <ul>
-                    <li>
-                        <Link to="/">Каталог</Link>
-                    </li>
-                    <li>
-                        <Link to="/have-to-buy/">Что нужно купить</Link>
-                    </li>
-                    <li>
-                        <Link to="/sources/">Магазины</Link>
-                    </li>
-                    <li>
-                        <Link to="/publishers/">Издательства</Link>
-                    </li>
+                    {
+                        T.map((o,i)=><li key={i}><Link to={o.path}>{o.title}</Link></li>)
+                    }
                 </ul>
             </nav>
         </header>
