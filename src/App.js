@@ -1,10 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Header from "./Header/Header";
-import Catalog from "./Catalog/Catalog";
-import HaveToBuy from "./HaveToBuy/HaveToBuy";
-import SourcesOfEBooks from "./SourcesOfEBooks/SourcesOfEBooks";
-import Publishers from "./Publishers/Publishers";
+import { Books, HaveToBuy, Publishers, SourcesOfEBooks } from "./Catalog/Catalog";
 import Footer from "./Footer/Footer";
 import logo from './logo.svg';
 import './App.css';
@@ -14,7 +11,7 @@ export default function App(){
     <Router>
       <React.Fragment>
         <Header />
-        <Route exact path="/" component={Catalog} />
+        <Route exact path="/" component={Books} />
         <Route path="/have-to-buy/" component={HaveToBuy} />
         <Route path="/sources/" component={SourcesOfEBooks} />
         <Route path="/publishers/" component={Publishers} />
