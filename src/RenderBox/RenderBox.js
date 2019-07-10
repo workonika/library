@@ -5,10 +5,19 @@ export default function RenderBox (props) {
   
     const [state, setState] = useState("checked");
 
-    const [books, setBooks] = useState(props.books);
+    const [items, setItems/*Данный метод будет использован при фильтрации*/] = useState(props.items);
 
     function changeStateSelectCheckboxes (state){
         setState(state);
+    }
+
+    let fn;
+
+    switch(props.itemsName){
+        /*case "": break;
+        case "": break;
+        case "": break;*/
+        default: fn = RenderBook;
     }
 
     return <React.Fragment>
@@ -17,7 +26,18 @@ export default function RenderBox (props) {
             {state}
         </div>
         <ul>
-            {books.map((book, idx)=><li key={idx}><input type="checkbox" id={book}></input>{book}</li>)}
+            {
+                items.map((item, idx)=>fn(item, idx))
+            }
         </ul>
     </React.Fragment>
+}
+
+function RenderBook(book, idx){
+    const {name, ISBN13, author} = book;
+    var book = <li key={idx}>
+        <span><input type="checkbox" id={ISBN13} /></span><span>{ISBN13}</span><span>{name}</span>
+        <span>{author}</span>
+        </li>;
+    return book;
 }
