@@ -1,23 +1,27 @@
 .checked {
-
+    background-color: firebrick;
 }
 
 .selected-partially {
-
+    background-color: grey;
 }
 
 .checkbox {
-
+    border: 1px solid black;
+    cursor: pointer;
 }
 
 .small {
-
+    width: .5em;
+    height: .5em;
 }
 
 .medium {
-
+    width: 1em;
+    height: 1em;
 }
 
 .big {
-
+    width: 1.5em;
+    height: 1.5em;
 }

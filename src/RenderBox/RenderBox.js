@@ -3,12 +3,17 @@ import SelectCheckboxes from "../SelectCheckboxes/SelectCheckboxes";
 
 export default function RenderBox (props) {
   
-    const [state, setState] = useState("checked");
+    const [stateOfCheckboxesOfChildren, setStateOfCheckboxesOfChildren] = useState("");
 
     const [items, setItems/*Данный метод будет использован при фильтрации*/] = useState(props.items);
 
     function changeStateSelectCheckboxes (state){
-        setState(state);
+        setStateOfCheckboxesOfChildren(state);
+    }
+
+    function chooseCheckboxes(e){
+        console.log(e);
+        setStateOfCheckboxesOfChildren("selected-partially");
     }
 
     let fn;
@@ -22,10 +27,10 @@ export default function RenderBox (props) {
 
     return <React.Fragment>
         <div className={"empty"}>
-            <SelectCheckboxes condition={"selected-partially"} setState={changeStateSelectCheckboxes} />
-            {state}
+            <SelectCheckboxes condition={stateOfCheckboxesOfChildren} parentCallback={changeStateSelectCheckboxes} />
+            <span>stateOfCheckboxesOfChildren: {stateOfCheckboxesOfChildren}</span>
         </div>
-        <ul>
+        <ul onClick={chooseCheckboxes}>
             {
                 items.map((item, idx)=>fn(item, idx))
             }

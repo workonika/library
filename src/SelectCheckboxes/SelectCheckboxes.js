@@ -1,13 +1,17 @@
 import React, {useState, useEffect} from "react";
+import { toggleClass } from "../library/fn";
 import "./SelectCheckboxes.css";
 
 export default function SelectCheckboxes (props){
-    const [state, setState] = useState(0);
+    
+    const [stateAddedCssClass, setStateAddedCssClass] = useState(props.condition);
+    let cssClasses = "checkbox big";
 
     function changeState(){
-        setState(state === 0 ? 1 : 0);
-        props.setState(state);
+        const evaluatedClass = stateAddedCssClass === "checked" || stateAddedCssClass === "selected-partially"  ? "" : "checked";
+        setStateAddedCssClass(evaluatedClass);
+        props.parentCallback(evaluatedClass);
     }
 
-    return <div onClick={changeState} className={props.condition}>{props.condition}</div>;
+    return <div onClick={changeState} className={toggleClass(cssClasses, stateAddedCssClass)} title="Выделить всё"></div>;
 }
