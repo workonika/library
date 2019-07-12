@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import SelectCheckboxes from "../SelectCheckboxes/SelectCheckboxes";
 
 export default function RenderBox (props) {
@@ -12,6 +12,7 @@ export default function RenderBox (props) {
     }
 
     function chooseCheckboxes(e){
+        e.persist();
         console.log(e);
         setStateOfCheckboxesOfChildren("selected-partially");
     }
@@ -26,23 +27,31 @@ export default function RenderBox (props) {
     }
 
     return <React.Fragment>
-        <div className={"empty"}>
-            <SelectCheckboxes condition={stateOfCheckboxesOfChildren} parentCallback={changeStateSelectCheckboxes} />
-            <span>stateOfCheckboxesOfChildren: {stateOfCheckboxesOfChildren}</span>
-        </div>
-        <ul onClick={chooseCheckboxes}>
-            {
-                items.map((item, idx)=>fn(item, idx))
-            }
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th><SelectCheckboxes condition={stateOfCheckboxesOfChildren} parentCallback={changeStateSelectCheckboxes} /></th>
+                    <th>ISBN</th>
+                    <th>Название</th>
+                    <th>Автор</th>
+                </tr>
+            </thead>
+            <tbody onClick={chooseCheckboxes}>
+                {
+                    items.map((item, idx)=>fn(item, idx))
+                }
+            </tbody>
+        </table>
     </React.Fragment>
 }
 
 function RenderBook(book, idx){
     const {name, ISBN13, author} = book;
-    var book = <li key={idx}>
-        <span><input type="checkbox" id={ISBN13} /></span><span>{ISBN13}</span><span>{name}</span>
-        <span>{author}</span>
-        </li>;
+    var book = <tr key={idx}>
+            <td><input type="checkbox" id={ISBN13} /></td>
+            <td>{ISBN13}</td>
+            <td>{name}</td>
+            <td>{author}</td>
+        </tr>;
     return book;
 }
