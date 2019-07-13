@@ -14,8 +14,7 @@ export default function RenderBox (props) {
 
         setStateOfCheckboxesOfChildren(state);
         
-        const tbody = document.querySelector("tbody");
-        const checkboxes = [].slice.call(tbody.querySelectorAll("input[type='checkbox']"));
+        const checkboxes = getCheckboxes();
 
         checkboxes.forEach(checkbox => checkbox.checked = state === checked);
     }
@@ -25,8 +24,7 @@ export default function RenderBox (props) {
         //setStateOfCheckboxesOfChildren("selected-partially");
         //console.log(e, stateOfCheckboxesOfChildren);
         //Прямая работа с DOM; На мой взгляд не есть гуд и при первом изучении переделать на использование ref
-        const tbody = document.querySelector("tbody");
-        const checkboxes = [].slice.call(tbody.querySelectorAll("input[type='checkbox']"));
+        const checkboxes = getCheckboxes();
         const length = checkboxes.length;
         const checkedLength = checkboxes.filter(_=>_.checked).length;
 
@@ -37,6 +35,12 @@ export default function RenderBox (props) {
         } else {
             setStateOfCheckboxesOfChildren(partially);
         }
+    }
+
+    function getCheckboxes(){
+        const tbody = document.querySelector("tbody");
+        const checkboxes = [].slice.call(tbody.querySelectorAll("input[type='checkbox']"));
+        return checkboxes;
     }
 
     let fn;
