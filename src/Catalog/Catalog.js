@@ -10,11 +10,13 @@ export const titles = [
 
     const itemsName = {books: "Добавить книгу", publishers: "Добавить изд-во"};
 
+    const categoryMapper = ["Художественная литература", "Детская литература", "Техническая литература"];
+
     const books = [
-        {name: "Война и мир", ISBN13: "978-0672322235", author: "Михельсон В."}, 
-        {name: "Пукшин в погоне за счастьем", ISBN13: "978-0672322235", author: "Михельсон В."}, 
-        {name: "Дадя Вася строитель", ISBN13: "978-0672322235", author: "Михельсон В."}, 
-        {name: "Кузя", ISBN13: "978-0672322235", author: "Михельсон В."}
+        {category: 0, parentCategory: null, name: "Война и мир", ISBN13: "978-0672322235", author: "Михельсон В."}, 
+        {category: 1, parentCategory: 0, name: "Пукшин в погоне за счастьем", ISBN13: "978-0672322235", author: "Михельсон В."}, 
+        {category: 0, parentCategory: null, name: "Дадя Вася строитель", ISBN13: "978-0672322235", author: "Михельсон В."}, 
+        {category: 2, parentCategory: null, name: "Кузя", ISBN13: "978-0672322235", author: "Михельсон В."}
     ];
 
     const ref = React.createRef();
