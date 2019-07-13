@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
-import SelectCheckboxes from "../SelectCheckboxes/SelectCheckboxes";
+import ControlPanel from "../ControlPanel/ControlPanel";
+import {conditions} from "../SelectCheckboxes/SelectCheckboxes";
 
 export default function RenderBox (props) {
   
@@ -7,14 +8,35 @@ export default function RenderBox (props) {
 
     const [items, setItems/*Данный метод будет использован при фильтрации*/] = useState(props.items);
 
+    const [empty, partially, checked] = conditions;
+
     function changeStateSelectCheckboxes (state){
+
         setStateOfCheckboxesOfChildren(state);
+        
+        const tbody = document.querySelector("tbody");
+        const checkboxes = [].slice.call(tbody.querySelectorAll("input[type='checkbox']"));
+
+        checkboxes.forEach(checkbox => checkbox.checked = state === checked);
     }
 
-    function chooseCheckboxes(e){
-        e.persist();
-        console.log(e);
-        setStateOfCheckboxesOfChildren("selected-partially");
+    function chooseCheckboxes(){
+    
+        //setStateOfCheckboxesOfChildren("selected-partially");
+        //console.log(e, stateOfCheckboxesOfChildren);
+        //Прямая работа с DOM; На мой взгляд не есть гуд и при первом изучении переделать на использование ref
+        const tbody = document.querySelector("tbody");
+        const checkboxes = [].slice.call(tbody.querySelectorAll("input[type='checkbox']"));
+        const length = checkboxes.length;
+        const checkedLength = checkboxes.filter(_=>_.checked).length;
+
+        if(checkedLength === length){
+            setStateOfCheckboxesOfChildren(checked);
+        } else if(!checkedLength){
+            setStateOfCheckboxesOfChildren(empty);
+        } else {
+            setStateOfCheckboxesOfChildren(partially);
+        }
     }
 
     let fn;
@@ -26,17 +48,27 @@ export default function RenderBox (props) {
         default: fn = RenderBook;
     }
 
+    var selectCheckboxesProps = {
+        condition: stateOfCheckboxesOfChildren,
+        parentCallback: changeStateSelectCheckboxes
+    };
+
+    var buttonProps = {
+        buttonText: props.buttonText
+    };
+
     return <React.Fragment>
-        <table>
+        <ControlPanel selectCheckboxesProps={selectCheckboxesProps} buttonProps={buttonProps} />
+        <table onClick={chooseCheckboxes}>
             <thead>
                 <tr>
-                    <th><SelectCheckboxes condition={stateOfCheckboxesOfChildren} parentCallback={changeStateSelectCheckboxes} /></th>
+                    <th></th>
                     <th>ISBN</th>
                     <th>Название</th>
                     <th>Автор</th>
                 </tr>
             </thead>
-            <tbody onClick={chooseCheckboxes}>
+            <tbody>
                 {
                     items.map((item, idx)=>fn(item, idx))
                 }
