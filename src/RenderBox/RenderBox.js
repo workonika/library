@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import ControlPanel from "../ControlPanel/ControlPanel";
-import {conditions} from "../SelectCheckboxes/SelectCheckboxes";
+import {conditions as SelectCheckboxesConditions} from "../SelectCheckboxes/SelectCheckboxes";
 
 export default function RenderBox (props) {
-  
-    const [stateOfCheckboxesOfChildren, setStateOfCheckboxesOfChildren] = useState("");
+
+    const [empty, partially, checked] = SelectCheckboxesConditions;
+
+    const [stateOfCheckboxesOfChildren, setStateOfCheckboxesOfChildren] = useState(empty);
 
     const [items, setItems/*Данный метод будет использован при фильтрации*/] = useState(props.items);
-
-    const [empty, partially, checked] = conditions;
 
     function changeStateSelectCheckboxes (state){
 
