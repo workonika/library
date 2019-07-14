@@ -42,6 +42,9 @@
 .close {
     text-decoration: underline;
     cursor: pointer;
+    position: absolute;
+    right: 1em;
+    top: 1em;
 }
 
 .shadow {

@@ -19,22 +19,12 @@ export const titles = [
         {category: 2, parentCategory: null, name: "Кузя", ISBN13: "978-0672322235", author: "Михельсон В."}
     ];
 
-    const ref = React.createRef();
-
 export function Books(props) {
-
-    function openModalWindow(){
-        alert("Button Clicked");
-    }
-
-    function chooseCheckboxes(){
-        console.log(document.querySelectorAll("input[type='checkbox']"));
-    }
 
     return(
         <React.Fragment> 
             <h2>{titles[0].title}</h2>
-            <RenderBox items={books} itemsName={"books"} buttonText={itemsName.books} onClick={chooseCheckboxes} />
+            <RenderBox items={books} itemsName={"books"} buttonText={itemsName.books} />
         </React.Fragment>
         );
 }

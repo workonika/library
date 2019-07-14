@@ -1,19 +1,50 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
+import { toggleClass } from "../library/fn";
 import "./Modal.css";
+import RenderBox from "../RenderBox/RenderBox";
 
-export default function Modal (){
+export default class Modal extends React.Component{
+    //В данный момент хардкод формы заполнения книги
+    
+    constructor(props){
+        super(props);
+        this.cssClassModal = "fix substrate";
+        
+        this.state = {
+            visibility: this.props.visibility
+        }
+    }
 
-    let cssClassModal = "fix substrate";
+    randomizer = () => Math.floor(Math.random() * (new Date).getTime());
 
-    return (
-        <div className={cssClassModal}>
-            <div className={"fix modal border background shadow"}>
-                <div className={"header"}>
-                    <h3>Заголовок модального окна</h3>
-                    <span className={"close"} title={"Закрыть"}>закрыть</span>
+    isbnId = this.randomizer();
+    nameId = this.randomizer();
+    authorId = this.randomizer();
+
+    hideModal = () => { 
+        this.setState((prevState, props)=>{console.log(prevState, props)}, function(a,b,c){console.log(a,b,c)});
+        console.log("Hide modal")
+    }
+
+    render(){
+        console.log("MODAL", this.state.visibility);
+        return ( 
+            <div className={toggleClass(this.cssClassModal, this.state.visibility)}>
+                <div className={"fix modal border background shadow"}>
+                    <div className={"header"}>
+                        <h3>Заголовок модального окна</h3>
+                        <span className={"close"} title={"Закрыть"} onClick={this.hideModal}>закрыть</span>
+                    </div>
+                    <div>
+                        <form>
+                            <label htmlFor={this.isbnId} >ISBN:</label><input name="isbn" type="text" id={this.isbnId}/>
+                            <label htmlFor={this.nameId} >name:</label><input name="name" type="text" id={this.nameId}/>
+                            <label htmlFor={this.authorId} >author:</label><input name="author" type="text" id={this.authorId}/>
+                            <button>Записать</button>
+                        </form>
+                    </div>
                 </div>
-                Модальное окно
             </div>
-        </div>
-        );
+            );
+    }
 }
