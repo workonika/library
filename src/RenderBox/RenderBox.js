@@ -61,8 +61,10 @@ export default function RenderBox (props) {
         buttonText: props.buttonText
     };
 
+    const chilProps = {selectCheckboxesProps, buttonProps};
+
     return <React.Fragment>
-        <ControlPanel selectCheckboxesProps={selectCheckboxesProps} buttonProps={buttonProps} />
+        <ControlPanel {...chilProps} />
         <table onClick={chooseCheckboxes}>
             <thead>
                 <tr>

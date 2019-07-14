@@ -8,7 +8,7 @@ export const titles = [
     {title: "Необходимо купить", path: "/have-to-buy/"}, 
     {title: "Магазины где куплены электронные книги", path: "/sources/"}];
 
-    const itemsName = {books: "Добавить книгу", publishers: "Добавить изд-во"};
+    const itemsNameMap = {books: "Добавить книгу", publishers: "Добавить изд-во"};
 
     const categoryMapper = ["Художественная литература", "Детская литература", "Техническая литература"];
 
@@ -20,11 +20,11 @@ export const titles = [
     ];
 
 export function Books(props) {
-
+    var props = { items: books, itemsName: "books", buttonText: itemsNameMap.books};
     return(
         <React.Fragment> 
             <h2>{titles[0].title}</h2>
-            <RenderBox items={books} itemsName={"books"} buttonText={itemsName.books} />
+            <RenderBox {...props} /> 
         </React.Fragment>
         );
 }

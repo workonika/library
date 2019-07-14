@@ -18,8 +18,8 @@ export default function ControlPanel (props){
     
     return <div className={"control-panel"}>
             <Modal visibility={modalVisibility}/>
-            <SelectCheckboxes condition={condition} parentCallback={parentCallback}/>
-            <Button buttonText={buttonText} parentCallback={hideShowModal}/>
+            <SelectCheckboxes {...{condition, parentCallback}}/>
+            <Button {...{buttonText, parentCallback:hideShowModal}}/>
             <Clock />
         </div>;
 }
