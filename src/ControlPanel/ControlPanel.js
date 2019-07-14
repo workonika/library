@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import SelectCheckboxes from "../SelectCheckboxes/SelectCheckboxes";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
+import Clock from "../Clock/Clock";
 import "./ControlPanel.css";
 
 export default function ControlPanel (props){
@@ -19,5 +20,6 @@ export default function ControlPanel (props){
             <Modal visibility={modalVisibility}/>
             <SelectCheckboxes condition={condition} parentCallback={parentCallback}/>
             <Button buttonText={buttonText} parentCallback={hideShowModal}/>
+            <Clock />
         </div>;
 }
