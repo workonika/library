@@ -1,7 +1,6 @@
 import React from "react";
 import { toggleClass } from "../library/fn";
 import "./Modal.css";
-import RenderBox from "../RenderBox/RenderBox";
 
 export default class Modal extends React.Component{
     //В данный момент хардкод формы заполнения книги
@@ -23,11 +22,9 @@ export default class Modal extends React.Component{
 
     hideModal = () => { 
         this.setState((prevState, props)=>{console.log(prevState, props)}, function(a,b,c){console.log(a,b,c)});
-        console.log("Hide modal")
     }
 
     render(){
-        console.log("MODAL", this.state.visibility);
         return ( 
             <div className={toggleClass(this.cssClassModal, this.state.visibility)}>
                 <div className={"fix modal border background shadow"}>
