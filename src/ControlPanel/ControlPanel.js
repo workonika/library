@@ -5,21 +5,31 @@ import Modal from "../Modal/Modal";
 import Clock from "../Clock/Clock";
 import "./ControlPanel.css";
 
-export default function ControlPanel (props){
-    const {condition, parentCallback} = props.selectCheckboxesProps;
-    const {buttonText} = props.buttonProps;
-    const [modalVisibility, setModalVisibility] = useState("hide");
+export default class ControlPanel extends React.Component {
 
-    function hideShowModal() {
-        
-        setModalVisibility("");
-        console.log(modalVisibility);
+    constructor(props){
+        super(props);
+        this.state = {modalVisibility: "hide"}
+    }
+
+    //const {condition, parentCallback} = props.selectCheckboxesProps;
+    //const {buttonText} = props.buttonProps;
+    //const [modalVisibility, setModalVisibility] = useState("hide");
+
+    showModal = ()=>{
+        this.setState({modalVisibility: ""});
+    }
+
+    hideModal = ()=>{
+        this.setState({modalVisibility: "hide"});
     }
     
-    return <div className={"control-panel"}>
-            <Modal visibility={modalVisibility}/>
-            <SelectCheckboxes {...{condition, parentCallback}}/>
-            <Button {...{buttonText, parentCallback:hideShowModal}}/>
+    render(){
+        return <div className={"control-panel"}>
+            <Modal visibility={this.state.modalVisibility} parentCallback={this.hideModal}/>
+            <SelectCheckboxes {...this.props.selectCheckboxesProps}/>
+            <Button {...this.props.buttonProps} parentCallback={this.showModal}/>
             <Clock />
         </div>;
+    }
 }
